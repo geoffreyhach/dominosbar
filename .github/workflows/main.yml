@@ -34,7 +34,8 @@ jobs:
           name: bundle
           path: /tmp/dominosbar
       - name: Deploy project with SSH
-        uses: easingthemes/ssh-deploy@v2.1.4
+        run: |
+          rsync -avz --exclude 'db/postgres' /home/runner/work/dominosbar/dominosbar/ ***@***:~/ --rsh "ssh -p 22 -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no"
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
