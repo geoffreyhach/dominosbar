@@ -35,11 +35,10 @@ jobs:
           path: /tmp/dominosbar
       - name: Deploy project with SSH
         uses: easingthemes/ssh-deploy@v2.1.4
-
+       
         env:
-          ARGS: >-  
-            -rltgoDzvO
-            --exclude='/db/postgres/'
+          ARGS: '-rltgoDzvO'
+          EXCLUDE: "/db/postgres/"
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
