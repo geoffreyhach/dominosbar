@@ -18,7 +18,7 @@ jobs:
       - name: Prepare files
         run: |
           mkdir -p /tmp/dominosbar
-          cp -r $GITHUB_WORKSPACE/* /tmp/dominosbar
+          sudo cp -r $GITHUB_WORKSPACE/* /tmp/dominosbar
       - name: Upload project as artifact
         uses: actions/upload-artifact@v3
         with:
