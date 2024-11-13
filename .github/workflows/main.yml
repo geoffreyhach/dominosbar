@@ -39,7 +39,7 @@ jobs:
         env:
           ARGS: >-  
             -rltgoDzvO
-            --exclude='./db'
+            --exclude='/db/postgres'
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
