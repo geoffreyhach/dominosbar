@@ -1,24 +1,24 @@
 name: SSH File Copy
+
 on:
   push:
     branches:
-      - main
+      - main # Adjust branch name if needed
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Download project from Git
         uses: actions/checkout@v2
-      
       - name: Build project
         run: |
           make prod-install
-      
       - name: Prepare files
         run: |
           mkdir -p dist
           rsync -av --exclude='db/postgres' ./ dist/
-      
       - name: Upload project as artifact
         uses: actions/upload-artifact@v3
         with:
@@ -33,15 +33,14 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: bundle
-          path: dist
-      
+          path: /tmp/dominosbar
       - name: Deploy project with SSH
         uses: easingthemes/ssh-deploy@v2.1.4
         env:
+          ARGS: '-rltgoDzvO'
+          EXCLUDE: "/db/postgres/"
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
           SOURCE: "dist/"
-          TARGET: "/home/${{ secrets.SSH_USER }}/app"
-          ARGS: "-rltgoDzvO"
-          EXCLUDE: "/db/postgres/"
+          TARGET: "~/"
