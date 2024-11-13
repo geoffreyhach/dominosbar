@@ -34,6 +34,8 @@ jobs:
         with:
           name: bundle
           path: /tmp/dominosbar
+      - name: Verify artifact contents
+        run: ls -la /tmp/dominosbar
       - name: Deploy project with SSH
         uses: easingthemes/ssh-deploy@v2.1.4
         env:
