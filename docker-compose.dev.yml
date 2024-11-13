@@ -1,0 +1,8 @@
+services:
+  # nextjs:
+  #   command: >
+  #     sh -c "npm install && npm run dev"
+
+  strapi:
+    command: >
+      sh -c "yarn install && yarn build && yarn develop"

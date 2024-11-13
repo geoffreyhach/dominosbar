@@ -1,0 +1,56 @@
+services:
+  postgres:
+    image: postgres:16
+    hostname: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: dominosbar
+      POSTGRES_PASSWORD: password
+    networks:
+      - strapi
+    volumes:
+      - ./db/postgres:/var/lib/postgresql/data
+      - ./dump:/dump
+
+  adminer:
+    image: adminer
+    hostname: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - strapi
+
+  # nextjs:
+  #   image: node:20
+  #   restart: always
+  #   working_dir: /app
+  #   volumes:
+  #     - ./nextjs:/app
+  #   ports:
+  #     - "3000:3000"
+  #   command: >
+  #     sh -c "npx create-strapi@latest dominosbar-strapi && npm install && npm run build && npm run start"
+
+  strapi:
+    image: node:20
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./strapi:/app
+    ports:
+      - "1337:1337"
+    command: >
+      sh -c "yarn install && yarn build && yarn start"
+    networks:
+      - strapi
+    depends_on:
+      - postgres
+
+networks:
+  strapi:
+    driver: bridge
+
+volumes:
+  jenkins_home:
