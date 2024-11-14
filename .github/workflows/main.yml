@@ -3,8 +3,7 @@ name: SSH File Copy
 on:
   push:
     branches:
-      - main # Adjust branch name if needed
-
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,28 +11,14 @@ jobs:
     steps:
       - name: Download project from Git
         uses: actions/checkout@v2
-      - name: Build project
+      - name: Test build project
         run: |
           make prod-install
-      - name: Prepare files
-        run: |
-          mkdir -p dist
-          rsync -av --exclude='db/postgres' ./ dist/
-      - name: Upload project as artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: bundle
-          path: dist
 
   deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: bundle
-          path: dist
       - name: Deploy project with SSH
         uses: easingthemes/ssh-deploy@v2.1.4
         env:
@@ -42,5 +27,11 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
-          SOURCE: "dist/"
+          SOURCE: "."
           TARGET: "~/dominosbar"
+      - name: Run Build Commands on Server
+        run: |
+          ssh -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            cd ~/dominosbar
+            make prod-install
+          EOF
