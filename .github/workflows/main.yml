@@ -37,10 +37,19 @@ jobs:
       - name: Deploy project with SSH
         uses: easingthemes/ssh-deploy@v2.1.4
         env:
-          ARGS: '-rltgoDzvO'
+          ARGS: "-rltgoDzvO"
           EXCLUDE: "/db/postgres/"
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
           SOURCE: "dist/"
           TARGET: "~/dominosbar"
+      - name: Run "make prod-install" on server
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/dominosbar
+            make prod-install
