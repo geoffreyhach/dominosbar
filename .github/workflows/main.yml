@@ -33,5 +33,6 @@ jobs:
         run: |
           ssh -i /home/runner/.ssh/deploy_key -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             cd ~/dominosbar
+            git pull origin main
             make prod-install
           EOF
