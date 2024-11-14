@@ -13,7 +13,7 @@ DOCKER-COMP = docker compose   # For Docker Compose v2
 DOCKER_COMPOSE_DEV = $(DOCKER-COMP) -f docker-compose.yml -f docker-compose.dev.yml 
 DOCKER_COMPOSE = $(DOCKER-COMP) -f docker-compose.yml 
 
-DOCKER_RUN_NEXTJS_BASH_COMMAND = run --rm nextjs ash -ci
+DOCKER_RUN_NEXTJS_BASH_COMMAND = run --rm nextjs bash -ci
 DOCKER_RUN_STRAPI_BASH_COMMAND = run --rm strapi ash -ci
 
 
