@@ -26,7 +26,7 @@ install:
 	$(MAKE) start
 
 install-react:
-	$(DOCKER_COMPOSE_DEV) $(DOCKER_RUN_NEXTJS_BASH_COMMAND) 'yarn install'
+	$(DOCKER_COMPOSE_DEV) $(DOCKER_RUN_NEXTJS_BASH_COMMAND) 'npm install -f'
 
 start:
 	$(DOCKER_COMPOSE_DEV) up -d
@@ -60,7 +60,7 @@ prod-install:
 	$(MAKE) prod-start
 
 prod-install-react:
-	$(DOCKER_COMPOSE) $(DOCKER_RUN_NEXTJS_BASH_COMMAND) 'yarn install'
+	$(DOCKER_COMPOSE) $(DOCKER_RUN_NEXTJS_BASH_COMMAND) 'npm install -f'
 
 prod-start:
 	$(DOCKER_COMPOSE) up -d
