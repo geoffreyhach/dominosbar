@@ -1,7 +1,7 @@
 services:
-  # nextjs:
-  #   command: >
-  #     sh -c "npm install && npm run dev"
+  nextjs:
+    command: >
+      sh -c "npm install && npm run dev"
 
   strapi:
     command: >
