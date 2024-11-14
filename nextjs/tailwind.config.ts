@@ -8,9 +8,17 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sk-modernist)"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        black: "#222224",
+        white: "#FBF9C9",
+        red: "#D54338",
+        blue: "#B6DDD6",
+        purple: "#ACA7D0",
       },
     },
   },
