@@ -19,10 +19,14 @@ DOCKER_RUN_STRAPI_BASH_COMMAND = run --rm strapi ash -ci
 
 ## DEV
 install:
-	# $(MAKE) stop || true
+	$(MAKE) stop || true
 	$(DOCKER_COMPOSE_DEV) pull
 	$(DOCKER_COMPOSE_DEV) build
+	$(MAKE) install-react
 	$(MAKE) start
+
+install-react:
+	$(DOCKER_COMPOSE_DEV) $(DOCKER_RUN_NEXTJS_BASH_COMMAND) 'yarn install'
 
 start:
 	$(DOCKER_COMPOSE_DEV) up -d
@@ -51,8 +55,12 @@ strapi-connect:
 prod-install:
 	$(DOCKER_COMPOSE) down
 	$(DOCKER_COMPOSE) pull
+	$(MAKE) prod-install-react
 	$(DOCKER_COMPOSE) build
 	$(MAKE) prod-start
+
+prod-install-react:
+	$(DOCKER_COMPOSE) $(DOCKER_RUN_NEXTJS_BASH_COMMAND) 'yarn install'
 
 prod-start:
 	$(DOCKER_COMPOSE) up -d

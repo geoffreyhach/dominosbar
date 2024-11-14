@@ -22,16 +22,16 @@ services:
     networks:
       - strapi
 
-  # nextjs:
-  #   image: node:20
-  #   restart: always
-  #   working_dir: /app
-  #   volumes:
-  #     - ./nextjs:/app
-  #   ports:
-  #     - "3000:3000"
-  #   command: >
-  #     sh -c "npx create-strapi@latest dominosbar-strapi && npm install && npm run build && npm run start"
+  nextjs:
+    image: node:20
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./nextjs:/app
+    ports:
+      - "3000:3000"
+    command: >
+      sh -c "npm install && npm run build && npm run start"
 
   strapi:
     image: node:20
