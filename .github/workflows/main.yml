@@ -18,7 +18,7 @@ jobs:
       - name: Prepare files
         run: |
           mkdir -p dist
-          rsync -av --exclude='db/postgres' --exclude='react/node_modules' --exclude='react/.next' ./ dist/
+          rsync -av --exclude='db/postgres' --exclude='nextjs/node_modules' --exclude='nextjs/.next' ./ dist/
       - name: Upload project as artifact
         uses: actions/upload-artifact@v3
         with:
