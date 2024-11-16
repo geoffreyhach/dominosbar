@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "./../components/Header";
+import Footer from "./../components/Footer";
+import { SWRProvider } from "./../providers/SwrProvider";
+
+export const metadata: Metadata = {
+  title: "Domino's bar",
+  description: "Domino's bar - bar associatif à Lemberg (57)",
+};
 
 const skModernist = localFont({
   src: [
@@ -26,11 +31,6 @@ const skModernist = localFont({
   variable: "--font-sk-modernist",
 });
 
-export const metadata: Metadata = {
-  title: "Domino's bar",
-  description: "Domino's bar - Bar associatif à Lemberg (57)",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,12 +38,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${skModernist.variable} font-sans`}>
-      <body
-        className={`bg-black text-white min-h-screen max-h-screen flex flex-col`}
-      >
-        <Header />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+      <body className="bg-black text-white min-h-screen container m-auto sm:max-h-screen flex flex-col justify-between p-4">
+        <SWRProvider>
+          <Header />
+          <main className="flex-grow mt-4">{children}</main>
+          <Footer />
+        </SWRProvider>
       </body>
     </html>
   );

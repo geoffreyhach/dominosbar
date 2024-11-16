@@ -1,9 +1,13 @@
 import * as React from "react";
+import FacebookBtn from "./social/FacebookBtn";
+import InstagramBtn from "./social/InstagramBtn";
 
-interface IFooterProps {}
-
-const Footer: React.FunctionComponent<IFooterProps> = (props) => {
-  return <h1>Pied de page</h1>;
-};
-
-export default Footer;
+export default function Footer() {
+  return (
+    <footer className="flex justify-center sm:justify-end gap-4">
+      <p>Domino&apos;s bar - {new Date().getFullYear()} </p>
+      <FacebookBtn />
+      <InstagramBtn />
+    </footer>
+  );
+}

@@ -401,6 +401,7 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
 export interface ApiAgendaAgenda extends Struct.CollectionTypeSchema {
   collectionName: 'agendas';
   info: {
+    description: '';
     displayName: 'Agenda';
     pluralName: 'agendas';
     singularName: 'agenda';
@@ -409,11 +410,13 @@ export interface ApiAgendaAgenda extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    Artiste: Schema.Attribute.DynamicZone<['artiste.artiste']>;
     body: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     date: Schema.Attribute.DateTime;
+    FacebookUrl: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -440,10 +443,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    body: Schema.Attribute.Text &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 80;
-      }>;
+    body: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

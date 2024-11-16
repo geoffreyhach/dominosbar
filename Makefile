@@ -14,7 +14,7 @@ DOCKER_COMPOSE_DEV = $(DOCKER-COMP) -f docker-compose.yml -f docker-compose.dev.
 DOCKER_COMPOSE = $(DOCKER-COMP) -f docker-compose.yml 
 
 DOCKER_RUN_NEXTJS_BASH_COMMAND = run --rm nextjs bash -ci
-DOCKER_RUN_STRAPI_BASH_COMMAND = run --rm strapi ash -ci
+DOCKER_RUN_STRAPI_BASH_COMMAND = run --rm strapi bash -ci
 
 
 ## DEV
@@ -22,11 +22,11 @@ install:
 	$(MAKE) stop || true
 	$(DOCKER_COMPOSE_DEV) pull
 	$(DOCKER_COMPOSE_DEV) build
-	$(MAKE) install-react
+	$(MAKE) install-strapi
 	$(MAKE) start
 
 install-react:
-	$(DOCKER_COMPOSE_DEV) $(DOCKER_RUN_NEXTJS_BASH_COMMAND) 'yarn install'
+	$(DOCKER_COMPOSE_DEV) $(DOCKER_RUN_NEXTJS_BASH_COMMAND) 'npm install -f'
 
 start:
 	$(DOCKER_COMPOSE_DEV) up -d
@@ -60,13 +60,16 @@ prod-install:
 	$(MAKE) prod-start
 
 prod-install-react:
-	$(DOCKER_COMPOSE) $(DOCKER_RUN_NEXTJS_BASH_COMMAND) 'yarn install'
+	$(DOCKER_COMPOSE) $(DOCKER_RUN_NEXTJS_BASH_COMMAND) 'npm install -f'
 
 prod-start:
 	$(DOCKER_COMPOSE) up -d
 
 prod-stop:
 	$(DOCKER_COMPOSE) down
+
+delete-strapi-types:
+	$(DOCKER_COMPOSE) $(DOCKER_RUN_STRAPI_BASH_COMMAND) 'rm -rf ./types/*'
 
 
 ## MISC
@@ -75,10 +78,13 @@ react-logs:
 	$(DOCKER_COMPOSE) logs -f nextjs	
 	
 react-connect:
-	$(DOCKER_COMPOSE) exec strapi ash	
+	$(DOCKER_COMPOSE) exec strapi bash	
 
 strapi-logs:
 	$(DOCKER_COMPOSE) logs -f strapi	
+
+strapi-connect:
+	$(DOCKER_COMPOSE) exec strapi bash	
 
 postgres-logs:
 	$(DOCKER_COMPOSE) logs -f postgres	

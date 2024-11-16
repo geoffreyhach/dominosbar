@@ -4,7 +4,8 @@
   "info": {
     "singularName": "agenda",
     "pluralName": "agendas",
-    "displayName": "Agenda"
+    "displayName": "Agenda",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,15 @@
     },
     "date": {
       "type": "datetime"
+    },
+    "FacebookUrl": {
+      "type": "string"
+    },
+    "Artiste": {
+      "type": "dynamiczone",
+      "components": [
+        "artiste.artiste"
+      ]
     }
   }
 }

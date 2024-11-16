@@ -1,15 +1,14 @@
 import * as React from "react";
 import Logo from "./Logo";
+import Link from "next/link";
 
-interface IHeaderProps {}
-
-const Header: React.FunctionComponent<IHeaderProps> = (props) => {
+export default function Header() {
   return (
-    <div className="flex items-center justify-between gap-0 p-4">
-      <h1 className="text-4xl font-bold font-sans ">Domino's bar</h1>
+    <header className="flex items-center justify-between text-white">
+      <Link href="/">
+        <h1 className="text-4xl font-bold font-sans">Domino&apos;s bar</h1>
+      </Link>
       <Logo width={100} color="white" />
-    </div>
+    </header>
   );
-};
-
-export default Header;
+}

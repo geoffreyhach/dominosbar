@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-sk-modernist)"],
+        sans: ["var(--font-sk-modernist)", "sans-serif"],
       },
       colors: {
         background: "var(--background)",
