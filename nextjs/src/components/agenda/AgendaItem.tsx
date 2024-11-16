@@ -2,6 +2,7 @@ import { Event } from "@/types/types";
 import SubTitle from "../SubTitle";
 import dateFormatter from "@/utils/dateFormatter";
 import FacebookBtn from "../social/FacebookBtn";
+import ReactMarkdown from "react-markdown";
 
 interface IAgendaItemProps {
   data: Event;
@@ -26,7 +27,7 @@ export default function AgendaItem({ data }: IAgendaItemProps): JSX.Element {
         {dateFormatter(data.date)}
       </div>
       <div className="text-sm font-sans text-center md:text-left">
-        {data.body}
+        <ReactMarkdown>{data.body}</ReactMarkdown>
       </div>
       <ul className="list-none">
         {data.Artiste?.map((artist) => (
@@ -36,7 +37,7 @@ export default function AgendaItem({ data }: IAgendaItemProps): JSX.Element {
               href={artist.Url}
               target="_blank"
             >
-              {artist.ArtistName}{" "}
+              {artist.ArtistName}
               <svg
                 className="w-4 h-4 ms-2 rtl:rotate-180 transition-transform duration-300 group-hover:scale-125"
                 aria-hidden="true"

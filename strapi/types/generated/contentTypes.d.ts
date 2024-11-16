@@ -411,7 +411,7 @@ export interface ApiAgendaAgenda extends Struct.CollectionTypeSchema {
   };
   attributes: {
     Artiste: Schema.Attribute.DynamicZone<['artiste.artiste']>;
-    body: Schema.Attribute.Text;
+    body: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -443,7 +443,7 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    body: Schema.Attribute.Text;
+    body: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
