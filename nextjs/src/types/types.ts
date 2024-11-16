@@ -15,3 +15,8 @@ export type Artist = {
   ArtistName: string;
   Url: string;
 };
+
+export type Block = {
+  body: string;
+  id: number;
+};

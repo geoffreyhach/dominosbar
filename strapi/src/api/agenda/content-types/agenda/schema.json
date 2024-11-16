@@ -15,9 +15,6 @@
     "title": {
       "type": "string"
     },
-    "body": {
-      "type": "text"
-    },
     "date": {
       "type": "datetime"
     },
@@ -29,6 +26,9 @@
       "components": [
         "artiste.artiste"
       ]
+    },
+    "body": {
+      "type": "richtext"
     }
   }
 }
