@@ -55,12 +55,13 @@ strapi-connect:
 prod-install:
 	$(DOCKER_COMPOSE) down
 	$(DOCKER_COMPOSE) pull
+	$(MAKE) delete-strapi-types
 	$(MAKE) prod-install-react
 	$(DOCKER_COMPOSE) build
 	$(MAKE) prod-start
 
 prod-install-react:
-	$(DOCKER_COMPOSE) $(DOCKER_RUN_NEXTJS_BASH_COMMAND) 'npm install -f'
+	$(DOCKER_COMPOSE) $(DOCKER_RUN_NEXTJS_BASH_COMMAND) 'npm install --force'
 
 prod-start:
 	$(DOCKER_COMPOSE) up -d
@@ -78,7 +79,7 @@ react-logs:
 	$(DOCKER_COMPOSE) logs -f nextjs	
 	
 react-connect:
-	$(DOCKER_COMPOSE) exec strapi bash	
+	$(DOCKER_COMPOSE) exec nextjs bash	
 
 strapi-logs:
 	$(DOCKER_COMPOSE) logs -f strapi	
