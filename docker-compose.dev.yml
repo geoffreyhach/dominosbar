@@ -1,7 +1,7 @@
 services:
   nextjs:
     command: >
-      sh -c "npm install && npm run dev"
+      sh -c "npm install --force && npm run dev"
 
   strapi:
     command: >

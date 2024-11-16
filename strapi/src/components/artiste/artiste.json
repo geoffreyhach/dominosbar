@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_artiste_artistes",
+  "info": {
+    "displayName": "Artiste",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "ArtistName": {
+      "type": "string"
+    },
+    "Url": {
+      "type": "string"
+    }
+  }
+}

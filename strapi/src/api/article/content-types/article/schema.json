@@ -16,8 +16,7 @@
       "type": "string"
     },
     "body": {
-      "type": "text",
-      "maxLength": 80
+      "type": "text"
     }
   }
 }

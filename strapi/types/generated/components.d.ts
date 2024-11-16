@@ -1,5 +1,17 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ArtisteArtiste extends Struct.ComponentSchema {
+  collectionName: 'components_artiste_artistes';
+  info: {
+    displayName: 'Artiste';
+    icon: 'apps';
+  };
+  attributes: {
+    ArtistName: Schema.Attribute.String;
+    Url: Schema.Attribute.String;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -65,6 +77,7 @@ export interface SharedSlider extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'artiste.artiste': ArtisteArtiste;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
