@@ -32,6 +32,8 @@ services:
       - "3000:3000"
     command: >
       sh -c "npm install --force && npm run build && npm run start"
+    depends_on:
+      - strapi
 
   strapi:
     image: node:20
