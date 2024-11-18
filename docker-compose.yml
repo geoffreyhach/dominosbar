@@ -30,6 +30,8 @@ services:
       - ./nextjs:/app
     ports:
       - "3000:3000"
+    networks:
+      - strapi
     command: >
       sh -c "npm install --force && npm run build && npm run start"
     depends_on:
