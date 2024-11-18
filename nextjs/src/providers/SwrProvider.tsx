@@ -11,9 +11,9 @@ axios.defaults.baseURL =
   typeof window === "undefined"
     ? "http://strapi:1337/api" // Server-side
     : `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api`;
-axios.defaults.headers.common[
-  "Authorization"
-] = `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`;
+
+axios.defaults.headers.common["Authorization"] =
+  `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`;
 
 export const SWRProvider = ({ children }: MySWRProviderProps) => {
   const fetcher = (url: string) => axios.get(url).then((res) => res.data);

@@ -9,7 +9,7 @@ import useSWR from "swr";
 import ReactMarkdown from "react-markdown";
 
 export default function Archive() {
-  const { data, error, isLoading } = useSWR("about?populate=*");
+  const { data, error, isLoading } = useSWR("about");
 
   console.log(data);
 
@@ -25,11 +25,7 @@ export default function Archive() {
     <div className="container flex flex-col gap-4 md:flex-row">
       <Title title={data.data.title} />
       <div className="flex-1">
-        {data.data.blocks.map((block: Block) => (
-          <div key={block.id}>
-            <ReactMarkdown>{block.body}</ReactMarkdown>
-          </div>
-        ))}
+        <ReactMarkdown>{data.data.body}</ReactMarkdown>
       </div>
     </div>
   );
